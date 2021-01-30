@@ -17,7 +17,12 @@ Hello Peter, whats happening? Ummm, I'm gonna need you to go ahead and come in t
 #   
 #   Just use split() to 
 
-def NextWordProbability(sampletext,word):
+def NextWordProbability(sample_text, word):
+    sample_text = sample_text.split()
+    word_indexes = [i for i, t in enumerate(sample_text) if t == word]
+    next_words = {sample_text[i+1]: 0 for i in word_indexes}
     
+    for index in word_indexes:
+        next_words[sample_text[index + 1]] += 1
     
-    return {}
+    return next_words
