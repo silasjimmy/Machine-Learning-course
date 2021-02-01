@@ -11,6 +11,8 @@
 #   You may want to import your code from the previous programming exercise!
 #
 
+from maximum_likelihood import NextWordProbability
+
 sample_memo = '''
 Milt, we're gonna need to go ahead and move you downstairs into storage B. We have some new people coming in, and we need all the space we can get. So if you could just go ahead and pack up your stuff and move it down there, that would be terrific, OK?
 Oh, and remember: next Friday... is Hawaiian shirt day. So, you know, if you want to, go ahead and wear a Hawaiian shirt and jeans.
@@ -26,8 +28,9 @@ data_list = sample_memo.strip().split()
 
 words_to_guess = ["ahead","could"]
 
-def LaterWords(sample,word,distance):
-    '''@param sample: a sample of text to draw from
+def LaterWords(sample, word, distance):
+    '''
+    @param sample: a sample of text to draw from
     @param word: a word occuring before a corrupted sequence
     @param distance: how many words later to estimate (i.e. 1 for the next word, 2 for the word after that)
     @returns: a single word which is the most likely possibility
@@ -35,11 +38,12 @@ def LaterWords(sample,word,distance):
     
     # TODO: Given a word, collect the relative probabilities of possible following words
     # from @sample. You may want to import your code from the maximum likelihood exercise.
+    next_words = NextWordProbability(sample, word)
     
     # TODO: Repeat the above process--for each distance beyond 1, evaluate the words that
     # might come after each word, and combine them weighting by relative probability
     # into an estimate of what might appear next.
     
-    return {}
+    return next_words
     
-print LaterWords(sample_memo,"ahead",2)
+print(LaterWords(sample_memo, "ahead", 2))
